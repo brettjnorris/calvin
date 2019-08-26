@@ -1,0 +1,9 @@
+<h1>Dashboard</h1>
+
+<h2>Latest Events</h2>
+
+<ul>
+  <% @inbound_events.each do |inbound_event| %>
+    <%= render partial: 'inbound_events/event_card', locals: { inbound_event: inbound_event } %>
+  <% end %>
+</ul>
