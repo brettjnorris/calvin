@@ -1,0 +1,28 @@
+<div class="card mb-3">
+  <div class="card-body">
+    <h5 class="card-title"><%= message.event_type_s %></h5>
+    <h6 class="card-subtitle mb-2 text-muted"><%= message.created_at.to_formatted_s(:long) %></h6>
+    <p class="card-text">
+      <dl>
+        <% if message.invitee %>
+          <dt>Invitee:</dt>
+          <dd><%= message.invitee["name"] %> (<%= message.payload["invitee"]["email"] %>)</dd>
+        <% end %>
+
+        <% if message.event %>
+          <dt>Event:<dt>
+          <dd>
+            <%= message.payload["event_type"]["name"] %>
+            (<%= message.event["start_time_pretty"] %> - 
+            <%= message.event["end_time_pretty"] %>)
+          </dd>
+
+          <dt>Assigned To:</dt>
+          <dd>
+            <%= message.event["assigned_to"]&.join(',') %>
+          </dd>
+        <% end %>
+      </dl>
+    </p>
+  </div>
+</div>
