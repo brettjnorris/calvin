@@ -1,5 +1,13 @@
 <h1>Dashboard</h1>
 
+<h2>Upcoming Events</h2>
+
+<ul>
+  <% @events.each do |event| %>
+    <%= render partial: 'events/event_card', locals: { event: event } %>
+  <% end %>
+</ul>
+
 <h2>Latest Messages</h2>
 
 <ul>

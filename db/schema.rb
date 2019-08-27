@@ -10,10 +10,29 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_08_27_001436) do
+ActiveRecord::Schema.define(version: 2019_08_27_021936) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "events", force: :cascade do |t|
+    t.string "calendly_uuid"
+    t.boolean "canceled"
+    t.jsonb "json"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "invitee_id"
+    t.index ["invitee_id"], name: "index_events_on_invitee_id"
+  end
+
+  create_table "invitees", force: :cascade do |t|
+    t.string "calendly_uuid"
+    t.string "email"
+    t.string "name"
+    t.jsonb "json"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "messages", force: :cascade do |t|
     t.string "event_type"
