@@ -2,6 +2,7 @@ class Event < ApplicationRecord
   belongs_to :invitee
 
   scope :active, -> { where(canceled: false) }
+  scope :upcoming, -> { where("json ->> 'start_time' > ?", Time.now) }
 
   def time_range
     [
